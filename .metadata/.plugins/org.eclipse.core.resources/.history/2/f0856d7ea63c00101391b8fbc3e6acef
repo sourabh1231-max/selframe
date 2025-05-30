@@ -1,0 +1,36 @@
+package TEST;
+
+import java.lang.reflect.Array;
+
+public class FINDINGREPREATEDCHAR {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		
+		String name="testing";
+		
+		
+		
+		for(int i=0;i<name.length();i++)
+		{
+			
+			char letter = name.charAt(i);
+			System.out.print(letter);
+	
+		 /*   for(int j=letter;j<name.length();j++)
+			
+		    {
+		    	char alpha = name.charAt(i);
+		    	if (letter==alpha) {
+		    		
+		    		System.out.print(letter);
+		    	}*/
+		    }
+		
+			
+		}
+		
+	}
+
+

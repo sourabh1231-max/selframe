@@ -1,0 +1,19 @@
+package TEST;
+
+public class removespaces {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		String a=" TEST  SINGHANAIA DEP     H";
+	
+		for(int i=0;i<a.length();i++)
+		{
+		char b= a.trim().charAt(i);
+		
+	
+		System.out.print(b);
+		}
+	}
+
+}

@@ -1,0 +1,42 @@
+package Luma.Luma;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+
+public class Test {
+
+	
+		// TODO Auto-generated method stub
+	public static void main(String[] args) throws InterruptedException {
+		  driver = webdriver.Chrome(ChromeDriverManager().install());
+
+	 
+		  
+		
+		
+		
+		
+      driver.get("https://magento.softwaretestingboard.com/?ref=hackernoon.com");
+	  driver.findElement(By.xpath("/html/body/div[2]/header/div[1]/div/ul/li[2]/a")).click();
+	  driver.manage().window().maximize();
+	  Thread.sleep(1000);
+	  driver.findElement(By.id("email")).sendKeys("sourabhshrivastava569@gmail.com");
+	  driver.findElement(By.name("login[password]")).sendKeys("umbrella@123");
+	  driver.findElement(By.xpath("(//*[@id=\"send2\"]/span)[1]")).click();
+     // driver.findElement(By.cssSelector("#ui-id-5")).click();
+	
+      WebElement ele = driver.findElement(By.cssSelector("#ui-id-5"));
+
+    //Creating object of an Actions class
+    Actions action = new Actions(driver);
+
+    //Performing the mouse hover action on the target element.
+    action.moveToElement(ele).perform();
+				
+	}	
+
+}

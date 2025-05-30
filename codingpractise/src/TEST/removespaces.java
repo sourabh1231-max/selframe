@@ -1,0 +1,17 @@
+package TEST;
+
+public class removespaces {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		String a=" TEST  SINGHANAIA DEP     H";
+	
+		 String b= a.replaceAll(" ", "");
+		 
+		 
+		 System.out.print(b);
+		}
+	}
+
+

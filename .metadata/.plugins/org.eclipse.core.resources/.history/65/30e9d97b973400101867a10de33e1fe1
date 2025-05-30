@@ -1,0 +1,35 @@
+package TEST;
+
+import java.util.Scanner;
+
+public class Palindrome {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+     
+     
+     
+     Scanner sc = new Scanner(System.in);
+     System.out.print("Enter a word");
+     
+     String input= sc.nextLine();
+     
+	
+	System.out.print(input);
+	
+	
+	for(int i= input.length()-1;i>=0;i--)
+		
+	{
+		
+		String reversed=charAt(input);
+		System.out.print(reversed);
+	}
+ 
+
+	}
+
+	private static String charAt(String input) {
+		// TODO Auto-generated method stub
+		return null;
+	}}

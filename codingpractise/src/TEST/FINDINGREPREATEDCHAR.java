@@ -1,0 +1,39 @@
+package TEST;
+
+public class FINDINGREPREATEDCHAR {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		
+		String name="testing";
+		int count= 1;
+		
+		
+		for(int i=0;i<name.length();i++)
+		{
+			
+			char letter = name.charAt(i);
+		
+	
+		   for(int j=i+1;j<name.length();j++)
+			
+		    {
+		    	char alpha = name.charAt(j);
+		    	if (letter==alpha) {
+		    		count++;
+		    		if(count>1)
+		    		
+		    		System.out.print(letter + " repeated "+count+" number of times" +"\n");
+		    		
+		    		
+		    	} 
+		    	
+		    
+		
+			
+		}
+		
+	}
+	}}
+

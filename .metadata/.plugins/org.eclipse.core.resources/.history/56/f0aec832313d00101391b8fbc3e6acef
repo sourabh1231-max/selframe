@@ -1,0 +1,97 @@
+package Luma.Luma;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
+import java.util.List;
+
+import io.cucumber.messages.types.Product;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+
+public class Test {
+	WebDriver driver;
+	
+		// TODO Auto-generated method stub
+	public static void main(String[] args) throws InterruptedException {
+		
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver=new ChromeDriver();
+		
+		
+      driver.get("https://magento.softwaretestingboard.com/?ref=hackernoon.com");
+	  driver.findElement(By.xpath("/html/body/div[2]/header/div[1]/div/ul/li[2]/a")).click();
+	  driver.manage().window().maximize();
+	  Thread.sleep(1000);
+	  driver.findElement(By.id("email")).sendKeys("sourabhshrivastava569@gmail.com");
+	  driver.findElement(By.name("login[password]")).sendKeys("umbrella@123");
+	  driver.findElement(By.xpath("(//*[@id=\"send2\"]/span)[1]")).click();
+     // driver.findElement(By.cssSelector("#ui-id-5")).click();
+	  Thread.sleep(1000);
+      WebElement ele = driver.findElement(By.cssSelector("#ui-id-5"));
+      Thread.sleep(1000);
+    //Creating object of an Actions class
+    Actions action = new Actions(driver);
+    Thread.sleep(1000);
+    //Performing the mouse hover action on the target element.
+    action.moveToElement(ele).perform();
+    Thread.sleep(1000);
+    WebElement elem=driver.findElement(By.cssSelector("#ui-id-18 > span:nth-child(2)"));
+    Thread.sleep(1000);
+    action.moveToElement(elem).perform();
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    WebElement element= wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#ui-id-24 > span")));
+	driver.findElement(By.cssSelector("#ui-id-24 > span")).click();		
+	  Thread.sleep(5000);
+	
+	 List<WebElement> products = driver.findElements(By.xpath("//*[@class='item product product-item']"));
+     System.out.println("Total products found: " + products.size());
+
+     for (int i = 0; i < products.size(); i++) {
+         try {
+             WebElement product = products.get(i);
+
+             // Scroll product into view
+             ((org.openqa.selenium.JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", product);
+             Thread.sleep(1000);
+
+             // Click product to go to product detail page
+             WebElement productLink = product.findElement(By.xpath(".//a[@class='product photo product-item-photo']"));
+             productLink.click();
+
+             // Wait for color option and select
+             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class, 'swatch-option') and contains(@class, 'text') and not(contains(@class, 'disabled'))][1]"))).click();
+             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class, 'swatch-option') and contains(@class, 'color') and not(contains(@class, 'disabled'))][1]"))).click();
+            
+             Thread.sleep(3000);
+             // Click Add to Cart
+             wait.until(ExpectedConditions.elementToBeClickable(By.id("product-addtocart-button"))).click();
+
+             // Wait for confirmation message or some indication it's added
+             Thread.sleep(2000);
+
+             // Navigate back to product list
+             driver.navigate().back();
+             Thread.sleep(2000);
+
+             // Refresh product list after coming back
+             products = driver.findElements(By.xpath("//*[@class='item product product-item']"));
+         } catch (Exception e) {
+             System.out.println("Error adding product at index " + i + ": " + e.getMessage());
+         }
+     }
+
+     // After all products are added, go to cart
+     driver.findElement(By.xpath("/html/body/div[2]/div[2]/ul/li[3]/a")).click();
+     System.out.println("Navigated to Cart.");
+
+     // Optional: Close the driver
+     // driver.quit();
+ }
+}

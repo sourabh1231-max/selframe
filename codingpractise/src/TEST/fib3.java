@@ -1,0 +1,24 @@
+package TEST;
+
+public class fib3 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		
+		int first=0; 
+		int second=1;
+	    int n=20;
+	    
+	    for(int j=0;j<=n;j++)
+	    {
+	    	System.out.print(first); 
+	    	int nxt=first+second;
+	    	first=second;
+	    	second=nxt;
+	    	
+	    
+	    }
+	}
+
+}

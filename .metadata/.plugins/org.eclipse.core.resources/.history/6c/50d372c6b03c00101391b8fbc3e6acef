@@ -1,0 +1,37 @@
+package TEST;
+
+public class repeatedstringcorreectcode {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String name = "testing";
+        char[] chars = name.toCharArray();
+
+        for (int i = 0; i < chars.length; i++) {
+            int count = 1;
+
+            // Skip if already counted
+            boolean alreadyCounted = false;
+            for (int k = 0; k < i; k++) {
+                if (chars[i] == chars[k]) {
+                    alreadyCounted = true;
+                    break;
+                }
+            }
+
+            if (alreadyCounted) {
+                continue;
+            }
+
+            for (int j = i + 1; j < chars.length; j++) {
+                if (chars[i] == chars[j]) {
+                    count++;
+                }
+            }
+
+            if (count > 1) {
+                System.out.println(chars[i] + " repeated " + count + " number of times");
+            }
+        }
+    }
+}

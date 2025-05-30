@@ -1,0 +1,72 @@
+package Luma.Luma;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
+import java.util.List;
+
+import io.cucumber.messages.types.Product;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+
+public class Test {
+	WebDriver driver;
+	
+		// TODO Auto-generated method stub
+	public static void main(String[] args) throws InterruptedException {
+		
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver=new ChromeDriver();
+		
+		
+      driver.get("https://magento.softwaretestingboard.com/?ref=hackernoon.com");
+	  driver.findElement(By.xpath("/html/body/div[2]/header/div[1]/div/ul/li[2]/a")).click();
+	  driver.manage().window().maximize();
+	  Thread.sleep(1000);
+	  driver.findElement(By.id("email")).sendKeys("sourabhshrivastava569@gmail.com");
+	  driver.findElement(By.name("login[password]")).sendKeys("umbrella@123");
+	  driver.findElement(By.xpath("(//*[@id=\"send2\"]/span)[1]")).click();
+     // driver.findElement(By.cssSelector("#ui-id-5")).click();
+	  Thread.sleep(1000);
+      WebElement ele = driver.findElement(By.cssSelector("#ui-id-5"));
+      Thread.sleep(1000);
+    //Creating object of an Actions class
+    Actions action = new Actions(driver);
+    Thread.sleep(1000);
+    //Performing the mouse hover action on the target element.
+    action.moveToElement(ele).perform();
+    Thread.sleep(1000);
+    WebElement elem=driver.findElement(By.cssSelector("#ui-id-18 > span:nth-child(2)"));
+    Thread.sleep(1000);
+    action.moveToElement(elem).perform();
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    WebElement element= wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#ui-id-24 > span")));
+	driver.findElement(By.cssSelector("#ui-id-24 > span")).click();		
+	  Thread.sleep(5000);
+	List<WebElement> Products=driver.findElements(By.xpath("(//*[@class=\"item product product-item\"])"));
+	for(int i=1;i<Products.size();i++)
+	{
+		WebElement Productss=driver.findElement(By.xpath("(//*[@class='item product product-item'])[" + i + "]"));
+		/*WebElement pro = Productss.get(i);
+		action.moveToElement(pro).perform();
+		driver.findElement(By.xpath("//*[contains(text(),'Add to Cart')]")).click();
+		  Thread.sleep(1000);
+		driver.findElement(By.xpath("//*[@id=\"option-label-size-143-item-176\"]")).click();*/
+		Productss.click();
+		  Thread.sleep(2000);
+		
+		driver.findElement(By.cssSelector("#option-label-color-93-item-52")).click();
+		  Thread.sleep(1000);		
+		driver.findElement(By.xpath("//*[@id=\"product-addtocart-button\"]")).click();
+		driver.findElement(By.xpath("/html/body/div[2]/div[2]/ul/li[3]/a")).click();
+		
+	}
+	}	
+
+}
